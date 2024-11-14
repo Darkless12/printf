@@ -1,34 +1,30 @@
 # Variáveis
-NAME = libfprintf.a
-MAKE = make
+NAME = libftprintf.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-LIBFT_DIR = libft        # Diretório onde está o Makefile da libft
-LIBFT = $(LIBFT_DIR)/libft.a  # Caminho completo para libft.a
-SRCS = ft_printf.c       # Adicione aqui mais arquivos para o ft_printf se necessário
+SRCS =	ft_printf.c \
+		ft_putstr_pf.c \
+		ft_putchar_pf.c \
+		ft_strlen_pf.c \
+		ft_put_hex_pf.c \
+		ft_put_nbr_pf.c
 OBJS = $(SRCS:.c=.o)
 
 
 # Regra padrão
-all: $(NAME) $(LIBFT) 
+all: $(NAME)
 
 # Compila libfprintf.a
-$(NAME): $(OBJS) $(LIBFT)
+$(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
-
-# Chama o Makefile da libft para garantir que libft.a está atualizada
-$(LIBFT):
-	$(MAKE) -C $(LIBFT_DIR)
 
 # Remove arquivos .o
 clean:
 	rm -f $(OBJS)
-	$(MAKE) -C $(LIBFT_DIR) clean
 
 # Remove arquivos .o e a biblioteca
 fclean: clean
 	rm -f $(NAME)
-	$(MAKE) -C $(LIBFT_DIR) fclean
 
 # Recompila tudo do zero
 re: fclean all
