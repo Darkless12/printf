@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_pf.c                                    :+:      :+:    :+:   */
+/*   ft_putstr_printf.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ddiogo-f <ddiogo-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: darkless12 <darkless12@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/05 11:17:35 by darkless12        #+#    #+#             */
-/*   Updated: 2024/11/14 14:24:02 by ddiogo-f         ###   ########.fr       */
+/*   Created: 2024/11/05 11:52:17 by darkless12        #+#    #+#             */
+/*   Updated: 2024/11/16 17:30:50 by darkless12       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putchar_pf(char c)
+int	ft_putstr_printf(char *s)
 {
-	write(1, &c, 1);
-	return (1);
+	if (!s)
+	{
+		write(1, "(NULL)", 6);
+		return (6);
+	}
+	write(1, s, ft_strlen_printf(s));
+	return (ft_strlen_printf(s));
 }

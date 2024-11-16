@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ddiogo-f <ddiogo-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: darkless12 <darkless12@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:25:59 by ddiogo-f          #+#    #+#             */
-/*   Updated: 2024/11/14 16:27:05 by ddiogo-f         ###   ########.fr       */
+/*   Updated: 2024/11/16 18:09:30 by darkless12       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,23 @@ int	find_type(char c, char *str)
 	return (0);
 }
 
-int	send_by_type(va_list boxofvars, char type, int *count)
+int	send_by_type(va_list boxofvars, char type)
 {
+	int	result;
+
 	if (type == 'c')
-		return(ft_putchar_pf(va_arg(boxofvars, int)));
+		result = (ft_putchar_printf(va_arg(boxofvars, int)));
 	else if (type == 's')
-		return(ft_putstr_pf(va_arg(boxofvars, char*)));
-	else if (find_type(type, "xXu"))
-		ft_put_hex_pf(va_arg(boxofvars, unsigned int), type, count);
+		result = (ft_putstr_printf(va_arg(boxofvars, char *)));
+	else if (find_type(type, "p"))
+		result = ft_putptr_printf(va_arg(boxofvars, void *));
 	else if (find_type(type, "di"))
-		ft_put_nbr_pf(va_arg(boxofvars, unsigned int), count);
-	return (0);
+		result = (ft_putint_printf(va_arg(boxofvars, int)));
+	else if (find_type(type, "xXu"))
+		result = ft_puthex_printf(va_arg(boxofvars, unsigned int), type);
+	else
+		result = ft_putchar_printf('%');
+	return (result);
 }
 
 int	ft_printf(const char *str, ...)
@@ -45,6 +51,7 @@ int	ft_printf(const char *str, ...)
 	va_list	boxofvars;
 	int		i;
 	int		count;
+	int		result;
 
 	va_start(boxofvars, str);
 	i = 0;
@@ -55,11 +62,14 @@ int	ft_printf(const char *str, ...)
 		{
 			i++;
 			if (find_type(str[i], "%%cspdiuxX") == 1)
-				count += send_by_type(boxofvars, str[i], &count);
+				result = send_by_type(boxofvars, str[i]);
 		}
 		else if (str[i] != '%')
-			count += ft_putchar_pf(str[i]);
+			result = ft_putchar_printf(str[i]);
 		i++;
+		count += result;
+		if (result == -1)
+			return (-1);
 	}
 	va_end(boxofvars);
 	return (count);

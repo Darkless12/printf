@@ -4,7 +4,17 @@
 
 int	main()
 {
-	/*
+    int a = -1;
+
+    printf("chars: %d\n", ft_printf(" %p ", (void *)&a));
+    printf("chars: %d\n", printf(" %p ", (void *)&a));
+/*
+    printf("chars: %d\n", ft_printf(" %d \n", -2147483647 - 1));
+    printf("chars: %d\n", printf(" %d \n", -2147483647 - 1));
+    */
+    //printf("%d", ft_printf(" NULL %s NULL ", NULL));
+    //printf("%d", printf(" NULL %s NULL ", NULL));
+/*
 	// Teste com caractere ASCII imprimível
 	ft_printf("\nTESTANDO %%c\n");
     printf("Retorno: %d\n", ft_printf("Caractere: %c\n", 'A'));
@@ -56,7 +66,7 @@ int	main()
     // Teste com %d sem nenhum valor fornecido (pode causar comportamento indefinido)
     printf("Retorno: %d\n", ft_printf("Sem valor para %%d: %d\n"));
     //printf("Retorno esperado: %d\n", printf("Sem valor para %%d: %d\n"));
-*/
+
 	ft_printf("\nTESTANDO %%i\n");
 	// Teste com um número positivo
     printf("Retorno: %d\n", ft_printf("Número positivo: %i\n", 123));
@@ -79,7 +89,10 @@ int	main()
     // Teste com um número grande negativo
     printf("Retorno: %d\n", ft_printf("Número grande negativo: %i\n", -214748364));
     printf("Retorno esperado: %d\n", printf("Número grande negativo: %i\n", -214748364));
-/*
+
+    printf("Retorno: %d\n", ft_printf(" %i %i %i %i %i %i %i", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42));
+    printf("Retorno esperado: %d\n", printf(" %i %i %i %i %i %i %i", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42));
+
 	ft_printf("\nTESTANDO %%u\n");
 	// Teste com zero
     printf("Retorno: %d\n", ft_printf("Número zero: %u\n", 0));
