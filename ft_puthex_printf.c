@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_puthex_printf.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: darkless12 <darkless12@student.42.fr>      +#+  +:+       +#+        */
+/*   By: ddiogo-f <ddiogo-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 15:51:41 by ddiogo-f          #+#    #+#             */
-/*   Updated: 2024/11/16 17:53:11 by darkless12       ###   ########.fr       */
+/*   Updated: 2024/11/17 12:16:44 by ddiogo-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ void	ft_print_hex(unsigned int n, char type)
 
 int	ft_puthex_printf(unsigned int n, char type)
 {
-	int	base;
-	int	temp;
-	int	count;
+	unsigned int	base;
+	unsigned int	temp;
+	int				count;
 
 	temp = n;
 	count = 0;

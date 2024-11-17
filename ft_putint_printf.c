@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putint_printf.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: darkless12 <darkless12@student.42.fr>      +#+  +:+       +#+        */
+/*   By: ddiogo-f <ddiogo-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 16:19:57 by ddiogo-f          #+#    #+#             */
-/*   Updated: 2024/11/16 17:53:28 by darkless12       ###   ########.fr       */
+/*   Updated: 2024/11/17 12:22:32 by ddiogo-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	ft_print_int(int nb)
 {
-	char	a;
-
 	if (nb < 0)
 	{
 		ft_putchar_printf('-');
@@ -32,10 +30,7 @@ void	ft_print_int(int nb)
 		ft_print_int(nb % 10);
 	}
 	else
-	{
-		a = nb + '0';
-		ft_putchar_printf(a);
-	}
+		ft_putchar_printf(nb + '0');
 }
 
 int	ft_putint_printf(int nb)
@@ -53,7 +48,7 @@ int	ft_putint_printf(int nb)
 			temp = -147483648;
 			count += 1;
 		}
-		nb = -nb;
+		temp = -temp;
 	}
 	while (temp >= 10)
 	{
