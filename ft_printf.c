@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: darkless12 <darkless12@student.42.fr>      +#+  +:+       +#+        */
+/*   By: ddiogo-f <ddiogo-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:25:59 by ddiogo-f          #+#    #+#             */
-/*   Updated: 2024/11/16 18:09:30 by darkless12       ###   ########.fr       */
+/*   Updated: 2024/11/18 16:31:16 by ddiogo-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,15 @@ int	ft_printf(const char *str, ...)
 	int		count;
 	int		result;
 
-	va_start(boxofvars, str);
 	i = 0;
-	count = 0;
+	count = (str != NULL) - 1;
+	if (str != NULL)
+		va_start(boxofvars, str);
 	while (str[i] != 0)
 	{
 		if (str[i] == '%')
 		{
-			i++;
-			if (find_type(str[i], "%%cspdiuxX") == 1)
+			if (find_type(str[++i], "%%cspdiuxX") == 1)
 				result = send_by_type(boxofvars, str[i]);
 		}
 		else if (str[i] != '%')
