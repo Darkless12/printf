@@ -6,7 +6,7 @@
 /*   By: ddiogo-f <ddiogo-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:25:59 by ddiogo-f          #+#    #+#             */
-/*   Updated: 2024/11/18 16:31:16 by ddiogo-f         ###   ########.fr       */
+/*   Updated: 2024/11/19 10:26:01 by ddiogo-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,19 @@ int	send_by_type(va_list boxofvars, char type)
 	return (result);
 }
 
+int	cycle_string(va_list boxofvars, int *i, const char *str)
+{
+	if (str[*i] == '%')
+	{
+		*i += 1;
+		if (find_type(str[*i], "%%cspdiuxX") == 1)
+			return (send_by_type(boxofvars, str[*i]));
+	}
+	else if (str[*i] != '%')
+		return (ft_putchar_printf(str[*i]));
+	return (0);
+}
+
 int	ft_printf(const char *str, ...)
 {
 	va_list	boxofvars;
@@ -54,18 +67,13 @@ int	ft_printf(const char *str, ...)
 	int		result;
 
 	i = 0;
-	count = (str != NULL) - 1;
-	if (str != NULL)
-		va_start(boxofvars, str);
+	count = 0;
+	va_start(boxofvars, str);
+	if (!str)
+		return (-1);
 	while (str[i] != 0)
 	{
-		if (str[i] == '%')
-		{
-			if (find_type(str[++i], "%%cspdiuxX") == 1)
-				result = send_by_type(boxofvars, str[i]);
-		}
-		else if (str[i] != '%')
-			result = ft_putchar_printf(str[i]);
+		result = cycle_string(boxofvars, &i, str);
 		i++;
 		count += result;
 		if (result == -1)
