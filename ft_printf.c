@@ -6,7 +6,7 @@
 /*   By: ddiogo-f <ddiogo-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:25:59 by ddiogo-f          #+#    #+#             */
-/*   Updated: 2024/11/19 10:26:01 by ddiogo-f         ###   ########.fr       */
+/*   Updated: 2024/11/19 15:37:15 by ddiogo-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	cycle_string(va_list boxofvars, int *i, const char *str)
 	if (str[*i] == '%')
 	{
 		*i += 1;
-		if (find_type(str[*i], "%%cspdiuxX") == 1)
+		if (find_type(str[*i], "%cspdiuxX") == 1)
 			return (send_by_type(boxofvars, str[*i]));
 	}
 	else if (str[*i] != '%')
